@@ -14,10 +14,8 @@ describe('AppService', () => {
   });
 
   describe('getData', () => {
-    it('should return "Welcome to data-sync-worker!"', () => {
-      expect(service.getData()).toEqual({
-        message: 'Welcome to data-sync-worker!',
-      });
+    it('should return "Welcome to back!"', () => {
+      expect(service.getData()).toEqual({ message: 'Welcome to back!' });
     });
   });
 });

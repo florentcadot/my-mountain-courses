@@ -14,11 +14,9 @@ describe('AppController', () => {
   });
 
   describe('getData', () => {
-    it('should return "Welcome to data-sync-worker!"', () => {
+    it('should return "Welcome to back!"', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getData()).toEqual({
-        message: 'Welcome to data-sync-worker!',
-      });
+      expect(appController.getData()).toEqual({ message: 'Welcome to back!' });
     });
   });
 });
