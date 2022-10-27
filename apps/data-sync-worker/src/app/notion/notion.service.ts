@@ -1,10 +1,8 @@
 import {Injectable} from '@nestjs/common'
 import {NotionRepository} from './repository/notion.repository.port'
-import {Course} from '../courses/course.entity'
 import {PageObjectResponse} from '@notionhq/client/build/src/api-endpoints'
 import {extractValueFromPageProperty} from './notion.util'
-import {GetCourseDto} from '../courses/dto/get-course.dto'
-import {toDomain} from '../courses/mapper/get-courses.mapper'
+import {Course, GetCourseDto, toDomain} from '@mountain-routes-history/mountain-courses-lib'
 
 @Injectable()
 export class NotionService {

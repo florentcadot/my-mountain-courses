@@ -1,6 +1,6 @@
 import { Query, Resolver } from '@nestjs/graphql';
-import { Course } from './course.entity';
 import { CoursesService } from './courses.service';
+import {Course} from '@mountain-routes-history/mountain-courses-lib'
 
 @Resolver((of) => Course)
 export class CoursesResolver {

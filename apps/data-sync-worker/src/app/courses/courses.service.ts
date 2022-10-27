@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Course } from './course.entity';
-import {CoursesRepository} from './repository/courses.repository.port'
 import {NotionService} from '../notion/notion.service'
+import {Course, CoursesRepository} from '@mountain-routes-history/mountain-courses-lib'
 
 @Injectable()
 export class CoursesService {

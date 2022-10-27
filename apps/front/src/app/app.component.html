@@ -1,2 +1,4 @@
-<mountain-routes-history-nx-welcome></mountain-routes-history-nx-welcome>
+<mountain-routes-history-login [item]="message"></mountain-routes-history-login>
+<button class="btn" (click)="changeMessage()"> CHANGE CHILD MESSAGE</button>
+<mountain-routes-history-button (clicked)="changeMessage()"  [label]="'Click meee'"> </mountain-routes-history-button>
 <router-outlet></router-outlet>
