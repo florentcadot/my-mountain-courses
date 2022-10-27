@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit } from '@angular/core'
 import {GetCourses} from '../../../core/use-cases/get-courses.use-case'
 import {DataStore} from '../../../store/data-store'
+import {Subscription} from 'rxjs'
+import {Course} from '../../../core/entity/course'
 
 @Component({
   selector: 'mountain-routes-history-root',
@@ -9,11 +11,18 @@ import {DataStore} from '../../../store/data-store'
 })
 export class AppComponent {
 
-  constructor(private getCourses: GetCourses, private store: DataStore) {}
+  coursesSubscription: Subscription
+  courses: Course[] = []
+
+  constructor(private getCourses: GetCourses, private store: DataStore) {
+    this.coursesSubscription = this.store.courses.subscribe( (result) => {
+      this.courses = result.data
+    })
+  }
+
   title = 'front';
   message= 'Heyyyy';
 
-  courses= this.store.courses
 
   getAllCourses() {
     this.getCourses.execute()
