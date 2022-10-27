@@ -8,7 +8,7 @@ import {toDomain} from '../courses/mapper/get-courses.mapper'
 
 @Injectable()
 export class NotionService {
-  
+
   constructor(private notionRepository: NotionRepository) {}
 
   async getCourses(): Promise<Course[]> {

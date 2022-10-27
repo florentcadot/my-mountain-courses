@@ -1,0 +1,5 @@
+export * from './lib/database/database.module'
+export * from './lib/courses/courses.module'
+export * from './lib/courses/repository/courses.repository.port'
+export * from './lib/courses/repository/real.courses.repository'
+export * from './lib/courses/course.entity'
