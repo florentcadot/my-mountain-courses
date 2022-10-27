@@ -1,0 +1,16 @@
+export interface GetCoursesDto {
+  id: string,
+  label: string,
+  peakName: string,
+  type: string[],
+  grade: string,
+  topElevation: number,
+  elevationGain: number,
+  elevationLoss: number,
+  routeDescription: string,
+  massif: string,
+  positionInRopeLine:  number,
+  height: number,
+  date: Date,
+  attendants: string[],
+}

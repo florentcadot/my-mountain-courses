@@ -1,0 +1,7 @@
+<mountain-routes-history-login [item]="message"></mountain-routes-history-login>
+<button class="btn" (click)="getAllCourses()">GET ALL COURSES</button>
+<div>Toutes les courses:</div>
+<div *ngFor="let course of courses">
+  <div>{{course.label}}</div>
+</div>
+<router-outlet></router-outlet>

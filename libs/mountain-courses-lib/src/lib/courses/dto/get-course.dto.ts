@@ -1,4 +1,5 @@
 export interface GetCourseDto {
+  id: string;
   label: string;
   peakName: string;
   type: string;
