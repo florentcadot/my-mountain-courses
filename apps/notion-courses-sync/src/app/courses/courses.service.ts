@@ -1,9 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { NotionService } from '../notion/notion.service';
-import {
-  Course,
-  CoursesRepository,
-} from '@my-mountain-courses/mountain-courses-lib';
+import {CoursesRepository} from '@my-mountain-courses/mountain-courses-lib';
 
 @Injectable()
 export class CoursesService {
@@ -11,13 +8,6 @@ export class CoursesService {
     private coursesRepository: CoursesRepository,
     private notionService: NotionService
   ) {}
-  async findAll(): Promise<Course[]> {
-    try {
-      return this.coursesRepository.getCourses();
-    } catch (e) {
-      throw new Error('DB error');
-    }
-  }
 
   async synchronizeNotionDBWithRealDB(): Promise<boolean> {
     try {

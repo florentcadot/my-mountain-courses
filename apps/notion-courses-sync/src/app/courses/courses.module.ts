@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { CoursesService } from './courses.service';
-import { CoursesResolver } from './courses.resolver';
 import { NotionModule } from '../notion/notion.module';
 import { CoursesModule as MountainCoursesModule } from '@my-mountain-courses/mountain-courses-lib';
+import {CoursesController} from './courses.controller'
 
 @Module({
   imports: [MountainCoursesModule, NotionModule],
@@ -11,7 +11,7 @@ import { CoursesModule as MountainCoursesModule } from '@my-mountain-courses/mou
       provide: CoursesService,
       useClass: CoursesService,
     },
-    CoursesResolver,
   ],
+  controllers: [CoursesController]
 })
 export class CoursesModule {}
