@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mountain-routes-history/mountain-courses-lib": [
+      "@my-mountain-courses/mountain-courses-lib": [
         "libs/mountain-courses-lib/src/index.ts"
       ]
     }

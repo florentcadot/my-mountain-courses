@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core'
 
 @Component({
-  selector: 'mountain-routes-history-input',
+  selector: 'my-mountain-courses-input',
   templateUrl: './input.component.html',
 })
 export class InputComponent {

@@ -6,11 +6,11 @@ import {Course} from '../../../core/entity/course'
 import {ActivatedRoute} from '@angular/router'
 
 @Component({
-  selector: 'mountain-routes-history-root',
+  selector: 'my-mountain-courses-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   coursesSubscription: Subscription
   courses: Course[] = []

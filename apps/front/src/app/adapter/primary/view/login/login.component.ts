@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core'
 
 @Component({
-  selector: 'mountain-routes-history-login',
+  selector: 'my-mountain-courses-login',
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnChanges{

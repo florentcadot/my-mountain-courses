@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "mountain-routes-history",
+            "prefix": "my-mountain-courses",
             "style": "kebab-case"
           }
         ]

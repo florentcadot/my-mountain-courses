@@ -1,7 +1,7 @@
   version: '3.7'
   services:
     postgres:
-      container_name: mountain-routes-history-postgres
+      container_name: my-mountain-courses-postgres
       image: postgres:${POSTGRES_VERSION}
       environment:
         - POSTGRES_USER=${POSTGRES_USERNAME}
@@ -12,7 +12,7 @@
       volumes:
         - /data/postgres/
       networks:
-        - mountain-routes-history-network
+        - my-mountain-courses-network
   networks:
-    mountain-routes-history-network:
+    my-mountain-courses-network:
       driver: bridge

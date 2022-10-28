@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "mountain-routes-history",
+  "npmScope": "my-mountain-courses",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
@@ -36,7 +36,7 @@
     ],
     "sharedGlobals": []
   },
-  "defaultProject": "data-sync-worker",
+  "defaultProject": "notion-courses-sync",
   "generators": {
     "@nrwl/angular:application": {
       "style": "sass",
