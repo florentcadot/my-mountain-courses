@@ -1,11 +1,10 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import {UsersService} from '../../../../../libs/mountain-courses-lib/src/lib/users/users.service'
-import {User} from '../../../../../libs/mountain-courses-lib/src/lib/users/user.entity'
+import {User, UsersService} from '@my-mountain-courses/mountain-courses-lib'
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly usersService: UsersService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

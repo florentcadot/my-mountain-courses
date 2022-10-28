@@ -2,7 +2,7 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { Strategy, Profile } from 'passport-saml';
-import {User} from '../../../../../libs/mountain-courses-lib/src/lib/users/user.entity'
+import {User} from '@my-mountain-courses/mountain-courses-lib'
 
 @Injectable()
 export class SamlStrategy extends PassportStrategy(Strategy, 'saml') {

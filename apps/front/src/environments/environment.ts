@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 const GATEWAY_HOST = 'localhost'
-const GATEWAY_PORT = 3002
+const GATEWAY_PORT = 3001
 
 export const environment = {
   production: false,
