@@ -3,6 +3,9 @@ import { CoursesModule } from './courses/courses.module';
 import { DatabaseModule } from '@my-mountain-courses/mountain-courses-lib';
 
 @Module({
-  imports: [CoursesModule, DatabaseModule],
+  imports: [
+    CoursesModule,
+    DatabaseModule
+  ],
 })
 export class AppModule {}

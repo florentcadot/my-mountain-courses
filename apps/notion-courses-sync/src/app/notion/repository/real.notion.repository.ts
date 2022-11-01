@@ -5,17 +5,28 @@ import {
   QueryDatabaseResponse,
 } from '@notionhq/client/build/src/api-endpoints';
 import { Client } from '@notionhq/client';
+import {ConfigService} from '@nestjs/config'
 
 @Injectable()
 export class RealNotionRepository extends NotionRepository {
-  notionClient = new Client({
-    auth: process.env.NOTION_TOKEN,
-  });
+
+  private readonly notionClient: Client
+
+  private readonly databaseId: string
+
+  constructor(private configService: ConfigService) {
+    super()
+    this.notionClient = new Client({
+      auth: configService.get<string>('NOTION_TOKEN'),
+    });
+
+    this.databaseId = configService.get<string>('NOTION_DATABASE_ID')
+  }
 
   // https://developers.notion.com/reference/post-database-query
   async getNotionDatabasePages(): Promise<QueryDatabaseResponse> {
     return await this.notionClient.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID,
+      database_id: this.databaseId,
       sorts: [],
     });
   }

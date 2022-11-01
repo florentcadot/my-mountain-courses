@@ -2,16 +2,22 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
+import {ConfigService} from '@nestjs/config'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const configService = app.get(ConfigService)
+
+  const SCHEME = configService.get<string>('GATEWAY_SCHEME')
+  const HOST = configService.get<string>('GATEWAY_HOST')
+  const PORT = configService.get<string>('GATEWAY_PORT')
+
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   app.enableCors();
-  const port = process.env.GATEWAY_PORT || 3333;
-  await app.listen(port);
+  await app.listen(PORT);
   Logger.log(
-    `🚀 Application is running on: http://${process.env.GATEWAY_HOST}:${port}/${globalPrefix}`
+    `🚀 Application is running on: ${SCHEME}://${HOST}:${PORT}/${globalPrefix}`
   );
 }
 

@@ -13,7 +13,7 @@ export class AppController {
 
 
   @Get("/notion/sync")
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   syncWithNotions() {
     return this.appService.synchronizeNotionDBWithRealDB();
   }

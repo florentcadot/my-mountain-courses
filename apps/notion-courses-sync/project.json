@@ -13,7 +13,8 @@
         "outputPath": "dist/apps/notion-courses-sync",
         "main": "apps/notion-courses-sync/src/main.ts",
         "tsConfig": "apps/notion-courses-sync/tsconfig.app.json",
-        "assets": ["apps/notion-courses-sync/src/assets"]
+        "assets": ["apps/notion-courses-sync/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {

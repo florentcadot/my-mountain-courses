@@ -8,7 +8,8 @@ import {Repository} from 'typeorm'
 export class RealCoursesRepository extends CoursesRepository  {
   constructor(
     @InjectRepository(Course)
-    private coursesRepository: Repository<Course>,) {
+    private coursesRepository: Repository<Course>
+  ) {
     super()
   }
   async getCourses(): Promise<Course[]> {

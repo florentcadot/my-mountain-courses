@@ -7,14 +7,19 @@ import {AuthController} from './auth.controller'
 import {JwtModule} from '@nestjs/jwt'
 import {DatabaseModule, UsersModule} from '@my-mountain-courses/mountain-courses-lib'
 import {JwtStrategy} from './jwt/jwt.strategy'
+import {ConfigModule, ConfigService} from '@nestjs/config'
 
 
 @Module({
   imports: [
+    ConfigModule,
     PassportModule,
-    JwtModule.register({
-      secret: process.env.AUTH_SECRET,
-      signOptions: { expiresIn: '60s' },
+    JwtModule.registerAsync({
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET'),
+        signOptions: {expiresIn: '60s'},
+      }),
+      inject: [ConfigService]
     }),
     DatabaseModule,
     UsersModule,

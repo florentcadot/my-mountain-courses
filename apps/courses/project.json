@@ -13,7 +13,8 @@
         "outputPath": "dist/apps/courses",
         "main": "apps/courses/src/main.ts",
         "tsConfig": "apps/courses/tsconfig.app.json",
-        "assets": ["apps/courses/src/assets"]
+        "assets": ["apps/courses/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {

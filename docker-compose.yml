@@ -1,18 +1,115 @@
   version: '3.7'
   services:
     postgres:
-      container_name: my-mountain-courses-postgres
+      container_name: my-mountain-courses_postgres
       image: postgres:${POSTGRES_VERSION}
       environment:
-        - POSTGRES_USER=${POSTGRES_USERNAME}
-        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-        - POSTGRES_DB=${POSTGRES_DATABASE}
+        - POSTGRES_USER=${DB_USER}
+        - POSTGRES_PASSWORD=${DB_PASSWORD}
+        - POSTGRES_DB=${DB_NAME}
       ports:
-        - ${POSTGRES_PORT}:5432
+        - ${DB_PORT}:5432
       volumes:
-        - /data/postgres/
+        - postgres-data:/data/postgres/
       networks:
         - my-mountain-courses-network
+
+    gateway:
+      container_name: my-mountain-courses_gateway
+      image: mountain-courses-gateway
+      build:
+        context: .
+        dockerfile: apps/gateway/Dockerfile
+      ports:
+        - '3001:3001'
+      networks:
+        - my-mountain-courses-network
+      restart: unless-stopped
+      depends_on:
+        - postgres
+      environment:
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
+        DB_NAME: ${DB_NAME}
+        DB_PORT: ${DB_PORT}
+        DB_HOST: postgres
+        DB_TYPE: ${DB_TYPE}
+        GATEWAY_SCHEME: ${GATEWAY_SCHEME}
+        GATEWAY_HOST: ${GATEWAY_HOST}
+        GATEWAY_PORT: ${GATEWAY_PORT}
+        COURSES_HOST: courses-service
+        COURSES_PORT: ${COURSES_PORT}
+        NOTION_COURSES_SYNC_HOST: notion-courses-sync-service
+        NOTION_COURSES_SYNC_PORT: ${NOTION_COURSES_SYNC_PORT}
+        JWT_SECRET: ${JWT_SECRET}
+
+    courses-service:
+      container_name: my-mountain-courses_courses-service
+      image: courses-service
+      build:
+        context: .
+        dockerfile: apps/courses/Dockerfile
+      ports:
+        - '3002:3002'
+      networks:
+        - my-mountain-courses-network
+      restart: unless-stopped
+      depends_on:
+        - postgres
+      environment:
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
+        DB_NAME: ${DB_NAME}
+        DB_PORT: ${DB_PORT}
+        DB_HOST: postgres
+        DB_TYPE: ${DB_TYPE}
+        COURSES_SCHEME: ${COURSES_SCHEME}
+        COURSES_HOST: ${COURSES_HOST}
+        COURSES_PORT: ${COURSES_PORT}
+
+    notion-courses-sync-service:
+      container_name: my-mountain-courses_notion-courses-sync-service
+      image: notion-courses-sync-service
+      build:
+        context: .
+        dockerfile: apps/notion-courses-sync/Dockerfile
+      ports:
+        - ${NOTION_COURSES_SYNC_PORT}:${NOTION_COURSES_SYNC_PORT}
+      networks:
+        - my-mountain-courses-network
+      restart: unless-stopped
+      depends_on:
+        - postgres
+      environment:
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
+        DB_NAME: ${DB_NAME}
+        DB_PORT: ${DB_PORT}
+        DB_HOST: postgres
+        DB_TYPE: ${DB_TYPE}
+        NOTION_COURSES_SYNC_SCHEME: ${NOTION_COURSES_SYNC_SCHEME}
+        NOTION_COURSES_SYNC_HOST: ${NOTION_COURSES_SYNC_HOST}
+        NOTION_COURSES_SYNC_PORT: ${NOTION_COURSES_SYNC_PORT}
+
+    front:
+      container_name: my-mountain-courses_front
+      image: my-mountain-courses-front
+      build:
+        context: .
+        dockerfile: apps/front/Dockerfile
+      restart: on-failure
+      ports:
+        - '8080:80'
+      networks:
+        - my-mountain-courses-network
+#      environment:
+#        GATEWAY_HOST: gateway
+#        GATEWAY_PORT: ${GATEWAY_PORT}
+
+
   networks:
     my-mountain-courses-network:
       driver: bridge
+
+  volumes:
+    postgres-data:

@@ -10,9 +10,10 @@ import { InputComponent } from './input/input.component';
 import {HttpClientModule} from '@angular/common/http'
 import {CoursesRepository} from '../../../core/ports/courses.repository.port'
 import {RealCoursesRepository} from '../../secondary/real.courses.repository'
+import {LayoutComponent} from './layout/layout.component'
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ButtonComponent, InputComponent],
+  declarations: [AppComponent, LoginComponent, ButtonComponent, InputComponent, LayoutComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

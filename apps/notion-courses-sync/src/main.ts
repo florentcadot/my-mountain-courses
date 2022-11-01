@@ -2,27 +2,28 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import {Transport} from '@nestjs/microservices'
+import {ConfigService} from '@nestjs/config'
 
 async function bootstrap() {
-  const {
-    NOTION_COURSES_SYNC_HOST,
-    NOTION_COURSES_SYNC_PORT
 
-  } = process.env
+  const app = await NestFactory.create(AppModule);
+  const configService = app.get(ConfigService)
 
-  const app = await NestFactory.createMicroservice(AppModule, {
+  const SCHEME = configService.get<string>('NOTION_COURSES_SYNC_SCHEME')
+  const HOST = configService.get<string>('NOTION_COURSES_SYNC_HOST')
+  const PORT = configService.get<string>('NOTION_COURSES_SYNC_PORT')
+
+  app.connectMicroservice({
     transport: Transport.TCP,
     options: {
-      host: NOTION_COURSES_SYNC_HOST,
-      port: NOTION_COURSES_SYNC_PORT
-
+      host: HOST,
     }
-  });
+  })
 
-  await app.listen();
+  await app.listen(PORT);
+
   Logger.log(
-    `🚀 Microservice courses is running on: http://${NOTION_COURSES_SYNC_HOST}:${NOTION_COURSES_SYNC_PORT
-    }`
+    `🚀 Microservice courses is running on: ${SCHEME}://${HOST}:${PORT}`
   );
 }
 
