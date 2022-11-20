@@ -27,6 +27,7 @@
       restart: unless-stopped
       depends_on:
         - postgres
+        - courses-service
       environment:
         DB_USER: ${DB_USER}
         DB_PASSWORD: ${DB_PASSWORD}
@@ -64,7 +65,7 @@
         DB_HOST: postgres
         DB_TYPE: ${DB_TYPE}
         COURSES_SCHEME: ${COURSES_SCHEME}
-        COURSES_HOST: ${COURSES_HOST}
+        COURSES_HOST: courses-service
         COURSES_PORT: ${COURSES_PORT}
 
     notion-courses-sync-service:
@@ -88,8 +89,10 @@
         DB_HOST: postgres
         DB_TYPE: ${DB_TYPE}
         NOTION_COURSES_SYNC_SCHEME: ${NOTION_COURSES_SYNC_SCHEME}
-        NOTION_COURSES_SYNC_HOST: ${NOTION_COURSES_SYNC_HOST}
+        NOTION_COURSES_SYNC_HOST: notion-courses-sync-service
         NOTION_COURSES_SYNC_PORT: ${NOTION_COURSES_SYNC_PORT}
+        NOTION_DATABASE_ID: ${NOTION_DATABASE_ID}
+        NOTION_TOKEN: ${NOTION_TOKEN}
 
     front:
       container_name: my-mountain-courses_front

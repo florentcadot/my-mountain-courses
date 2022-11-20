@@ -17,10 +17,11 @@ async function bootstrap() {
     transport: Transport.TCP,
     options: {
       host: HOST,
+      port: PORT
     }
   });
 
-  await app.listen(PORT);
+  await app.startAllMicroservices();
 
   Logger.log(
     `🚀 Microservice courses is running on: ${SCHEME}://${HOST}:${PORT}`
