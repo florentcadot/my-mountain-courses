@@ -16,7 +16,7 @@
 
     gateway:
       container_name: my-mountain-courses_gateway
-      image: mountain-courses-gateway
+      image: florentcadot/mountain-courses-gateway:latest
       build:
         context: .
         dockerfile: apps/gateway/Dockerfile
@@ -46,7 +46,7 @@
 
     courses-service:
       container_name: my-mountain-courses_courses-service
-      image: courses-service
+      image: florentcadot/courses-service:latest
       build:
         context: .
         dockerfile: apps/courses/Dockerfile
@@ -70,7 +70,7 @@
 
     notion-courses-sync-service:
       container_name: my-mountain-courses_notion-courses-sync-service
-      image: notion-courses-sync-service
+      image: florentcadot/notion-courses-sync-service
       build:
         context: .
         dockerfile: apps/notion-courses-sync/Dockerfile
@@ -96,7 +96,7 @@
 
     front:
       container_name: my-mountain-courses_front
-      image: my-mountain-courses-front
+      image: florentcadot/my-mountain-courses-front
       build:
         context: .
         dockerfile: apps/front/Dockerfile

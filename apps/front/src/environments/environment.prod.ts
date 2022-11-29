@@ -1,7 +1,4 @@
-const GATEWAY_HOST = 'localhost'
-const GATEWAY_PORT = 3001
-
 export const environment = {
   production: true,
-  baseUrl: `http://${GATEWAY_HOST}:${GATEWAY_PORT}`
+  baseUrl: `https://calm-lamps-exist-78-30-8-86.loca.lt`
 };

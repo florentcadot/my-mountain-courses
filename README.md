@@ -54,14 +54,12 @@ _Start the apps_
 nx run-many --parallel --target=serve
 ```
 
-#### Production
+#### Deploy on a raspberry pi
 
-Coming soon.
-
-
-#### TODO
-- [ ] Fix SSO
-- [ ] Code a clean UI 
-- [ ] Auto sync using a cron job on notion-courses-sync microservice
-- [ ] Improve linting
-- [ ] Deploy prod to raspberry pie 
+- Handle GitHub authentication for raspberry pi
+- Install docker
+- Clone this repo and add .env file
+- Install [localtunnel](https://github.com/localtunnel/localtunnel)
+- Start front```` lt -p 8080```` & gateway ````lt -p 3001```` tunnels
+- [On local dev computer] Inject gateway URL to the front app  
+- Run ````sh deploy.sh````
